@@ -1,0 +1,74 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package De02;
+
+/**
+ *
+ * @author TranNguyeNgocAnh
+ */
+import java.util.Scanner;
+
+public class Program {
+    public static void main(String[] args) {
+        QLCauThu qlCauThu = new QLCauThu();
+        Scanner scanner = new Scanner(System.in);
+        int chon;
+        do {
+            System.out.println("\n===== MENU QUẢN LÝ CẦU THỦ =====");
+            System.out.println("1. Xuất danh sách cầu thủ");
+            System.out.println("2. Thêm mới cầu thủ");
+            System.out.println("3. Tìm cầu thủ có lương thấp nhất");
+            System.out.println("4. Sắp xếp cầu thủ theo lương giảm dần");
+            System.out.println("5. Tính tuổi trung bình của cầu thủ");
+            System.out.println("0. Thoát");
+            System.out.print("Chọn chức năng: ");
+            chon = scanner.nextInt();
+            scanner.nextLine();  // Đọc bỏ dòng thừa
+
+            switch (chon) {
+                case 1:
+                    qlCauThu.xuatDanhSach();
+                    break;
+                case 2:
+                    System.out.print("Nhập số áo: ");
+                    int soao = scanner.nextInt();
+                    scanner.nextLine();  // Đọc bỏ dòng thừa
+                    System.out.print("Nhập họ tên: ");
+                    String hoten = scanner.nextLine();
+                    System.out.print("Nhập năm sinh: ");
+                    int namsinh = scanner.nextInt();
+                    System.out.print("Nhập lương cứng: ");
+                    double luongcung = scanner.nextDouble();
+                    System.out.print("Nhập tiền thưởng: ");
+                    double tienthuong = scanner.nextDouble();
+                    System.out.print("Nhập tiền phạt: ");
+                    double tienphat = scanner.nextDouble();
+
+                    CauThu cauThu = new CauThu(soao, hoten, namsinh, luongcung, tienthuong, tienphat);
+                    qlCauThu.themCauThu(cauThu);
+                    break;
+                case 3:
+                    qlCauThu.timCauThuLuongThapNhat();
+                    break;
+                case 4:
+                    qlCauThu.sapXepTheoLuongGiamDan();
+                    qlCauThu.xuatDanhSach();
+                    break;
+                case 5:
+                    int namHienTai = java.time.Year.now().getValue();
+                    double tuoiTrungBinh = qlCauThu.tinhTuoiTrungBinh(namHienTai);
+                    System.out.println("Tuổi trung bình của cầu thủ: " + tuoiTrungBinh);
+                    break;
+                case 0:
+                    System.out.println("Thoát chương trình...");
+                    break;
+                default:
+                    System.out.println("Chọn chức năng không hợp lệ!");
+            }
+        } while (chon != 0);
+    }
+}
+
+
